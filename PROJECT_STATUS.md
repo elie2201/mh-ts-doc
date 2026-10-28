@@ -49,7 +49,7 @@ npx tsc --noEmit --pretty false
 
 - 主線以多檔案 TypeScript 的 `import`／`export` 作為開發方式，最終轉換並整合至既有 `mh` 全域物件及單一使用者腳本。
 - `registry.ts`、`index.ts` 的責任與全域命名空間映射，先前已在對話中討論；應回到既有決議與 `mh-ts-doc` 的紀錄核對，不應將目前診斷簡化成「缺少一般 global declaration」後另起一套設計。
-- `mh` 的七個子命名空間為 `data`、`dao`、`cmd`、`core`、`utils`、`chk)、`addon`（請以專案 registry 的實際定義核對）；`MOUSEHUNT_BASE_URL` 是 `mh` 根層成員，不屬於上述子命名空間。
+- `mh` 的七個子命名空間為 `data`、`dao`、`cmd`、`core`、`utils`、`chk`、`addon`（請以專案 registry 的實際定義核對）；`MOUSEHUNT_BASE_URL` 是 `mh` 根層成員，不屬於上述子命名空間。
 - `ts-mh-prototype` 的轉換器驗證與主線整合是不同階段。原型測試通過不等於主線的 `registry.ts`、`index.ts`、全域型別及建置流程已整合完成。
 
 ## 下一步：處理目前 M1 的具體缺口
