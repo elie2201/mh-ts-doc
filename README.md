@@ -1,2 +1,4 @@
-# mh-ts-doc
-mh-ts project documentation
+# MouseHunt TypeScript Migration
+
+This repository stores project documentation and milestone records.
+Source code remains local and is not stored here.
