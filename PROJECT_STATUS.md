@@ -1,8 +1,8 @@
-# MouseHunt TypeScript 移轉｜目前狀態
+# mh TypeScript 移轉｜目前狀態
 
 ## 專案核心目標
 
-將既有 MouseHunt Tampermonkey 使用者腳本逐步移轉至 TypeScript 開發，以取得靜態型別檢查、可靠的 IntelliSense，以及清楚可維護的模組相依性；最終仍產生單一、可整合至現有環境的 `my-mh-aid.js`。
+將既有 mh Tampermonkey 使用者腳本逐步移轉至 TypeScript 開發，以取得靜態型別檢查、可靠的 IntelliSense，以及清楚可維護的模組相依性；最終仍產生單一、可整合至現有環境的 `my-mh-aid.js`。
 
 原始碼留在本機，不存放於本文件庫。
 
@@ -38,7 +38,7 @@
 
 **本專案不是要開發通用語法解析器；解析器／AST 工具只是達成 TypeScript 移轉目標的手段。**
 
-- 轉換器的成功標準是能可靠地把本專案實際使用、且為最終輸出所需的 TypeScript／模組結構，轉成符合 MouseHunt 腳本要求的單一 JavaScript。
+- 轉換器的成功標準是能可靠地把本專案實際使用、且為最終輸出所需的 TypeScript／模組結構，轉成符合 mh 腳本要求的單一 JavaScript。
 - 不追求支援所有合法 TypeScript 語法、所有 JavaScript 語言情境或任意專案；不為通用性而擴大範圍。
 - 以本專案的真實程式碼、既定目錄與相依模式界定必要功能，對每項轉換需求建立對應測試。
 - 遇到尚未使用或不在本專案需求內的語法，先判斷是否真的需要；若不需要，應明確列為不支援／範圍外，而不是自動擴充成通用解析器。
@@ -72,7 +72,7 @@
 | 檔案／位置 | 診斷 | 後續處理方向 |
 |---|---|---|
 | `ts-src/dao/AjaxProvider.ts(44,23)` | TS2304：Cannot find name `user` | 遊戲環境提供的物件／API；型別策略待定 |
-| `ts-src/dao/AjaxProvider.ts(50,17)` | TS2339：Property `MOUSEHUNT_BASE_URL` does not exist on type `{ core: {}; }` | 根層 `mh` 型別設計待重新決定 |
+| `ts-src/dao/AjaxProvider.ts(50,17)` | TS2339：Property `mh_BASE_URL` does not exist on type `{ core: {}; }` | 根層 `mh` 型別設計待重新決定 |
 | `ts-src/dao/AjaxProvider.ts(54,11)` | TS2304：Cannot find name `eventRegistry` | 遊戲環境提供的物件／API；型別策略待定 |
 | `ts-src/dao/AjaxProvider.ts(63,29)` | TS2304：Cannot find name `jsDialog` | 遊戲環境提供的物件／API；型別策略待定 |
 
