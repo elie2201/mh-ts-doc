@@ -1,12 +1,12 @@
-# MouseHunt TypeScript 移轉｜第四份紀錄：實作進度與下一個里程碑
+# mh TypeScript 移轉｜第四份紀錄：實作進度與下一個里程碑
 
 ## 一、紀錄目的
 
 本紀錄承接前三份正式紀錄：
 
-1. 《MouseHunt TypeScript 移轉｜專案基準與里程碑紀錄》
-2. 《MouseHunt TypeScript 移轉｜專案目標》
-3. 《MouseHunt TypeScript 移轉｜第三份紀錄：目前技術基準與驗證狀態》
+1. 《mh TypeScript 移轉｜專案基準與里程碑紀錄》
+2. 《mh TypeScript 移轉｜專案目標》
+3. 《mh TypeScript 移轉｜第三份紀錄：目前技術基準與驗證狀態》
 
 本紀錄開始追蹤具體實作進度，避免將專案的長期目標、技術設計及實際完成的成果混為一談。
 
@@ -36,7 +36,7 @@
 - **尚待驗證**：已有實作或設計，但缺乏足夠證據確認結果。
 - **尚未實作**：尚未完成相關工作。
 
-單純存在程式碼，不代表功能已通過驗證；單純通過 TypeScript 編譯，也不代表產出的 JavaScript 在 MouseHunt 環境中能正常運作。
+單純存在程式碼，不代表功能已通過驗證；單純通過 TypeScript 編譯，也不代表產出的 JavaScript 在 mh 環境中能正常運作。
 
 ## 四、後續工作優先順序
 
