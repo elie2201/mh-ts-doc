@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "magic-string": "^1.4.4",
+    "oxc-parser": "^0.155.0",
+    "typescript": "^7.1.0-beta"
+  }
+}
