@@ -1,4 +1,4 @@
-# MouseHunt TypeScript 移轉｜專案基準與已定案決策
+# mh TypeScript 移轉｜專案基準與已定案決策
 
 ## 一、紀錄目的
 
