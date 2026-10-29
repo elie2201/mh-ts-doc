@@ -56,10 +56,10 @@ test('extends 的 import alias 應轉換為正確的 mh 路徑', () => {
 
   assert.match(
     code,
-    /mh\\.dao\\.Provider\\s*=\\s*class Provider extends mh\\.AbstractBase\\s*\\{/
+    /mh\.dao\.Provider\s*=\s*class Provider extends mh\.AbstractBase\s*\{/
   );
 
-  assert.doesNotMatch(code, /extends Base\\b/);
+  assert.doesNotMatch(code, /extends Base\b/);
 });
 
 test('多個 import 應各自轉換為正確的 mh 路徑', () => {
