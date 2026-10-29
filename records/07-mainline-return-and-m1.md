@@ -84,6 +84,57 @@
 
 不得因追求轉換器的完整性而無限延後主線工作。
 
+## 七、主線型別診斷追蹤紀錄
+
+### 7.1 已確認的環境背景與處理原則
+
+依據 [專案基準與已定案決策](02-baseline-decisions.md)：
+
+- `user`、`eventRegistry`、`jsDialog` 是既有遊戲環境的全域依賴。
+- 舊環境依賴應由實際需要它們的實作層處理；不應任意引入所有抽象類別。
+- `mh` 是既有全域命名空間。型別契約必須保留根物件及其既有成員，不能以重新建立或覆蓋全域物件作為解法。
+- 保留 `strict: true`，不以任意 `any` 或放寬編譯設定來掩蓋型別契約問題。
+
+以上是已定案的架構原則；具體宣告應依目前主線原始碼及既有型別定義決定，不能在未檢視檔案前假定應新增哪一段宣告。
+
+### 7.2 最近一次主線型別檢查
+
+使用者在本機 `Z:\share` 執行：
+
+```powershell
+npx tsc --version
+npx tsc --noEmit --pretty false
+```
+
+實際結果：
+
+- TypeScript 版本：`7.1.0-beta`。
+- 型別檢查結束碼：`2`。
+- 當次列出的主線 TypeScript 檔案共 20 個 `.ts`／`.d.ts` 檔案。
+- `tsconfig.json` 設定包含 `target: ES2022`、`module: ESNext`、`moduleResolution: Bundler`、`strict: true`、`skipLibCheck: true`、`types: ["jquery"]`、`noEmit: true`；包含 `ts-src/**/*.ts` 與 `ts-src/**/*.d.ts`。
+
+四項診斷均位於 `ts-src/dao/AjaxProvider.ts`：
+
+| 位置 | 診斷 |
+|---|---|
+| `(44,23)` | TS2304：Cannot find name `user` |
+| `(50,17)` | TS2339：Property `MOUSEHUNT_BASE_URL` does not exist on type `{ core: {}; }` |
+| `(54,11)` | TS2304：Cannot find name `eventRegistry` |
+| `(63,29)` | TS2304：Cannot find name `jsDialog` |
+
+### 7.3 尚待完成的實作工作
+
+四項診斷的背景已知，不應再把「這些名稱是什麼」當成尚待調查的問題。尚未完成的是依目前程式碼確認精確的型別修正方式。
+
+下一步需檢視本機最新版本的：
+
+- `ts-src/dao/AjaxProvider.ts`
+- `ts-src/mh-global.d.ts`
+
+再根據實際內容提出最小修正方案，說明每個變更對應哪一項診斷、如何符合既有全域依賴及 `mh` 命名空間契約。程式碼修改仍須先提出方案並取得使用者核准；核准前不得修改主線原始碼。
+
+修正後由使用者在本機重新執行 `npx tsc --noEmit --pretty false`，並以實際輸出確認結果。尚未執行的測試不得記為通過。
+
 ## 七、紀錄邊界
 
 本紀錄保存主線回歸的決策、架構基準、下一階段工作及完成判準。
