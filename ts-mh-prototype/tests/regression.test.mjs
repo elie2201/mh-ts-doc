@@ -51,6 +51,17 @@ test('不同目錄的同名 Provider 應解析至正確 namespace', () => {
   assert.match(code, /mh\.service\.Provider\.source\(\)/);
 });
 
+test('extends 的 import alias 應轉換為正確的 mh 路徑', () => {
+  const code = readOutput('dao/Provider.js');
+
+  assert.match(
+    code,
+    /mh\\.dao\\.Provider\\s*=\\s*class Provider extends mh\\.AbstractBase\\s*\\{/
+  );
+
+  assert.doesNotMatch(code, /extends Base\\b/);
+});
+
 test('多個 import 應各自轉換為正確的 mh 路徑', () => {
   const code = readOutput('dao/ProviderConsumer.js');
 
