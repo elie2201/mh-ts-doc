@@ -1,4 +1,4 @@
-# MouseHunt TypeScript 移轉｜語法轉換器階段性成果紀錄
+# mh TypeScript 移轉｜語法轉換器階段性成果紀錄
 
 ## 一、紀錄目的
 
