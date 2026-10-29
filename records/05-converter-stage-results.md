@@ -26,8 +26,8 @@
 | `tests\regression.test.mjs`       | 回歸測試，驗證既有轉換行為，避免後續修改破壞原有功能。                                      |
 | `tests\snapshot.test.mjs`         | 輸出快照測試，逐檔比較實際轉換結果與預期輸出。                                          |
 | `tests\import-shadowing.test.mjs` | 驗證 import 名稱與區域變數同名時的轉換正確性。                                      |
-| `test-shorthand-symbol.mjs`       | 獨立研究 TypeScript Compiler API 對 shorthand property 的 symbol 解析能力。 |
-| `test-symbol.mjs`                 | 獨立研究 TypeScript Compiler API 的 symbol 解析及 declaration 資訊。        |
+| `diagnose-shorthand-symbol.mjs` | 手動診斷 shorthand property 的 symbol 解析；不屬於自動化測試。 |
+| `diagnose-symbol.mjs` | 手動診斷 TypeScript Compiler API 的 symbol 與 declaration 資訊；不屬於自動化測試。 |
 
 ## 四、已涵蓋的轉換情境
 
@@ -145,7 +145,7 @@
 
 通用化不是目前主線的必要前置條件。
 
-## 八、原型階段結案狀態\n\n原型階段已結案。最後一次已回報的驗證為 17 項自動化測試通過、0 項失敗，且 `npx tsc --noEmit` 沒有診斷輸出。這些結果的具體日期背景、測試數量變化及適用限制，請以 [原型階段結案紀錄](08-converter-prototype-milestone.md) 為準。早期 19 項測試是歷史結果，不應視為目前測試數量。\n\n## 九、本紀錄的定位
+## 八、本紀錄的定位
 
 本紀錄保存語法轉換器的階段性成果、檔案用途、測試範圍及工作順序決策。
 
