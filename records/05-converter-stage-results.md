@@ -26,7 +26,7 @@
 | `tests\regression.test.mjs`       | 回歸測試，驗證既有轉換行為，避免後續修改破壞原有功能。                                      |
 | `tests\snapshot.test.mjs`         | 輸出快照測試，逐檔比較實際轉換結果與預期輸出。                                          |
 | `tests\import-shadowing.test.mjs` | 驗證 import 名稱與區域變數同名時的轉換正確性。                                      |
-| `diagnose-shorthand-symbol.mjs` | 手動診斷 shorthand property 的 symbol 解析；不屬於自動化測試。 |
+| `diagnose-compiled-symbol.mjs` | 手動診斷編譯後程式碼中的 symbol／declaration 資訊；不屬於自動化測試。 |\n| `diagnose-shorthand-symbol.mjs` | 手動診斷 shorthand property 的 symbol 解析；不屬於自動化測試。 |
 | `diagnose-symbol.mjs` | 手動診斷 TypeScript Compiler API 的 symbol 與 declaration 資訊；不屬於自動化測試。 |
 
 ## 四、已涵蓋的轉換情境
