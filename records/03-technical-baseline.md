@@ -1,11 +1,11 @@
-# MouseHunt TypeScript 移轉｜第三份紀錄：目前技術基準與驗證狀態
+# mh TypeScript 移轉｜第三份紀錄：目前技術基準與驗證狀態
 
 ## 一、紀錄目的
 
 本紀錄承接：
 
-1. 《MouseHunt TypeScript 移轉｜專案基準與里程碑紀錄》
-2. 《MouseHunt TypeScript 移轉｜專案目標》
+1. 《mh TypeScript 移轉｜專案基準與里程碑紀錄》
+2. 《mh TypeScript 移轉｜專案目標》
 
 本紀錄專門固定目前的 TypeScript 開發環境、專案設定、已確認的技術決策及驗證邊界，作為後續實作的技術參考點。
 
@@ -175,7 +175,7 @@ unsafeWindow.mh = mh;
 3. 所有 `export` 成員都能正確轉換成預期的 `mh` 命名空間成員。
 4. 類別與常數均能透過同一套轉換規則正確輸出。
 5. 不同子命名空間中的同名類別及常數不會發生衝突。
-6. 產生的 JavaScript 已在實際 MouseHunt 環境中完成完整測試。
+6. 產生的 JavaScript 已在實際 mh 環境中完成完整測試。
 7. 整份 `my-mh-aid.js` 已完成 TypeScript 移轉。
 
 後續工作應以實際測試結果逐項更新狀態，不應一次將上述事項全部標記為完成。
