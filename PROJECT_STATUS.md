@@ -23,29 +23,33 @@
 
 ## 當前主線狀態
 
-**主線 M1 尚未完成。** 下一步回到本機 `Z:\share`，以最新實際檔案及命令結果確認主線現況。舊紀錄中的診斷只可當作歷史快照，不可直接假定目前仍存在。
+**主線 M1 尚未完成。** 最近一次由使用者在本機 `Z:\share` 執行的檢查已確認主線目前有四項 TypeScript 診斷；這些是本次實際結果，不再只是舊紀錄中的歷史快照。
+
+### 已確認的主線環境與型別檢查結果
+
+- TypeScript 原始碼位於 `ts-src`，本次列出 20 個 `.ts`／`.d.ts` 檔案。
+- `tsconfig.json` 使用 `target: ES2022`、`module: ESNext`、`moduleResolution: Bundler`、`strict: true`、`skipLibCheck: true`、`types: ["jquery"]`、`noEmit: true`。
+- `include` 為 `ts-src/**/*.ts` 與 `ts-src/**/*.d.ts`；排除 `node_modules`、`build`。
+- `npx tsc --version` 回報 `Version 7.1.0-beta`。
+- `npx tsc --noEmit --pretty false` 的結束碼為 `2`，回報以下四項診斷：
+
+| 位置 | 診斷 | 已知的處理背景 |
+|---|---|---|
+| `ts-src/dao/AjaxProvider.ts(44,23)` | TS2304：Cannot find name `user` | `user` 是既有遊戲環境提供的全域依賴；依既定決策，由實際需要它的實作層處理。 |
+| `ts-src/dao/AjaxProvider.ts(50,17)` | TS2339：Property `MOUSEHUNT_BASE_URL` does not exist on type `{ core: {}; }` | 這是應用程式的 `mh` 根物件／成員型別契約問題；必須保留既有 `mh` 全域物件及命名空間設計。 |
+| `ts-src/dao/AjaxProvider.ts(54,11)` | TS2304：Cannot find name `eventRegistry` | `eventRegistry` 是既有遊戲環境提供的全域依賴；依既定決策，由實際需要它的實作層處理。 |
+| `ts-src/dao/AjaxProvider.ts(63,29)` | TS2304：Cannot find name `jsDialog` | `jsDialog` 是既有遊戲環境提供的全域依賴；依既定決策，由實際需要它的實作層處理。 |
+
+以上背景來自既有專案決策與本次實際診斷。**精確的型別修正尚未實作，也尚未驗證**；下一步需查看本機目前版本的 `ts-src/dao/AjaxProvider.ts` 與 `ts-src/mh-global.d.ts`，再提出最小且符合既有架構的修正方案。
 
 ### 下一步
 
-1. 核對 `ts-src` 的實際目錄、檔案及目前實作進度。
-2. 執行並記錄主線 TypeScript 型別檢查結果。
-3. 確認現有模組的匯入、匯出、類別引用及命名空間映射規則。
-4. 建立最小端到端驗證：TypeScript 原始碼 → 型別檢查／建置與轉換 → JavaScript 輸出 → 檢查 `mh` 結構及符號引用。
-5. 確認建置輸出如何整合至既有 `my-mh-aid.js` 工作流程，並建立可重複執行的驗證。
+1. 根據目前 `AjaxProvider.ts` 與 `mh-global.d.ts` 的實際內容，提出四項診斷的具體型別修正方案。
+2. 保留 `strict: true`，不以 `any` 或放寬編譯設定消除診斷。
+3. 取得使用者核准後，才修改主線原始碼。
+4. 修改後由使用者在本機重跑 `npx tsc --noEmit --pretty false`，記錄實際結果。
+5. 型別檢查完成後，再繼續確認模組至 `mh` 命名空間的映射、單檔建置及整合驗證。
 6. 在取得主線型別檢查、建置及輸出驗證的實際證據前，不宣告主線 M1 完成。
-
-### 主線型別檢查歷史快照
-
-先前回報的 `npx tsc --noEmit --pretty false` 曾有四項診斷：
-
-| 檔案／位置 | 診斷 | 待確認方向 |
-|---|---|---|
-| `ts-src/dao/AjaxProvider.ts(44,23)` | TS2304：Cannot find name `user` | 遊戲環境提供的物件／API 型別 |
-| `ts-src/dao/AjaxProvider.ts(50,17)` | TS2339：Property `mh_BASE_URL` does not exist on type `{ core: {}; }` | 根層 `mh` 型別設計 |
-| `ts-src/dao/AjaxProvider.ts(54,11)` | TS2304：Cannot find name `eventRegistry` | 遊戲環境提供的物件／API 型別 |
-| `ts-src/dao/AjaxProvider.ts(63,29)` | TS2304：Cannot find name `jsDialog` | 遊戲環境提供的物件／API 型別 |
-
-這是歷史快照，尚未重新確認是否仍有相同診斷。不可只為消除診斷就任意使用 `any`。
 
 ### 工具版本紀錄
 
